@@ -22,7 +22,12 @@ export const ProjectMilestones: React.FC<Props> = ({ onNavigate }) => {
                     "https://lh3.googleusercontent.com/aida-public/AB6AXuC23CeAEsTrjC2cxi0nG-oR5iOQF7R_yixf0z0jv8Yh1ZUIEy7SgcSNghiitqbEogEJAzVIFpFgPpy-6dM4gudiuCL6Bloqknmz1xSEnskcGu98v5f2XvqLRqdLG_s-Zanwc2wcRbDGVeGrETWARsf4s7TOxgJdNtG9HNsNoKHzcbZJ2qr1UhXfQdy6OGGsdzqADXt5It67AmFPEYk1EixA-bNBuTlOCLCY9hzydphK0ec4r95rk43k0lL6uyVsb6BkUL4PfFJ1mQ8"
                 ].map((src, idx) => (
                     <div key={idx} className="snap-center shrink-0 w-full h-full flex items-center justify-center">
-                        <img src={src} className="max-h-full max-w-full rounded-lg object-contain shadow-2xl" loading="lazy" />
+                        <img
+                            src={src}
+                            alt={`Project progress ${idx + 1}`}
+                            className="max-h-full max-w-full rounded-lg object-contain shadow-2xl"
+                            loading="lazy"
+                        />
                     </div>
                 ))}
             </div>
@@ -204,7 +209,7 @@ export const EscrowDeposit: React.FC<Props> = ({ onNavigate }) => {
                                 <path d="M19.72 13.06c1.37 0 2.45-.48 3.14-1.24v1.07h.93V8.27h-.93v1.08c-.68-.79-1.78-1.25-3.14-1.25-2.28 0-4.14 1.83-4.14 4.48s1.86 4.48 4.14 4.48zm.27-7.98c1.86 0 3.21 1.48 3.21 3.5s-1.35 3.5-3.21 3.5c-1.85 0-3.21-1.48-3.21-3.5s1.36-3.5 3.21-3.5zM31.25 8.1c-1.37 0-2.43.51-3.11 1.3V8.27h-.93v8.52h.93v-3.32c.68.79 1.74 1.25 3.11 1.25 2.28 0 4.14-1.83 4.14-4.48S33.53 8.1 31.25 8.1zm-.27 7.98c-1.85 0-3.21-1.48-3.21-3.5s1.36-3.5 3.21-3.5 3.21 1.48 3.21 3.5-1.36 3.5-3.21 3.5zM6.29 8.27l-2.73 6.94H2.47L3.92 11H.89l-.65 1.63H.24v.2h1.12l1.24-3.11L1.44 13.5H.24v.2h2.2l3.85-8.52h-1.2l-1.42 3.66h.02l1.4-3.57zM11.64 12.87c.81 0 1.51-.31 1.94-.85v.77h.93V8.27h-.93v.85c-.43-.58-1.13-.85-1.94-.85-1.63 0-2.88 1.26-2.88 2.8s1.25 2.8 2.88 2.8zm.13-4.84c1.16 0 2.01.89 2.01 2.04s-.85 2.04-2.01 2.04-2.01-.89-2.01-2.04.85-2.04 2.01-2.04zM24.79 8.27h.93v4.66c0 1.25.75 1.83 1.76 1.83.95 0 1.63-.58 1.63-1.83V8.27h.93v4.7c0 1.79-1.1 2.68-2.56 2.68s-2.69-.89-2.69-2.68V8.27z"></path>
                             </svg>
                         </button>
-                        <button class="flex w-full items-center justify-center bg-white text-gray-900 border border-gray-300 rounded-lg h-12 font-medium hover:bg-gray-50 transition-colors">
+                        <button className="flex w-full items-center justify-center bg-white text-gray-900 border border-gray-300 rounded-lg h-12 font-medium hover:bg-gray-50 transition-colors">
                            <img alt="Google Pay" className="h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqNKoqcAUNcz-d7p1T3uZDxjHxEj9UMLB7qbMyt30Q1BS8w1p690p-m0N4jPksNbDrhrcIelxFZT24rheqvamTA5GMPlblX3JKmAZ55XV78oMCGRKFaknpQf3y_Kmq3GqScUTenElMiela8MIFuzGWrsKGqjB9jPCRS1f38YBB69DHtKVOavX3kqFG-OMdKESSmZJdILY9Skk4Kez-6kLyOqk5TVOKJe8ENd6bpVRJmoaqyIpWRIFVb1TSLjbZyKxs1-6PcgRwONg" />
                         </button>
                     </div>
