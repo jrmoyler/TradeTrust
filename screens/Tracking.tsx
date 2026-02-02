@@ -1,12 +1,17 @@
 import React from 'react';
+import { Screen } from '../App';
+
+interface Props {
+  onNavigate: (screen: Screen) => void;
+}
 
 // === Track My Tech (Sheet View) ===
-export const TrackMyTechSheet: React.FC = () => {
+export const TrackMyTechSheet: React.FC<Props> = ({ onNavigate }) => {
   return (
     <div className="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-sans h-screen flex flex-col relative overflow-hidden">
       <header className="bg-background-light dark:bg-background-dark border-b border-slate-200 dark:border-slate-800 z-50">
         <div className="flex items-center p-4 pb-4 justify-between">
-          <div className="text-slate-900 dark:text-slate-100 flex size-10 items-center justify-center cursor-pointer">
+          <div onClick={() => onNavigate(Screen.HomeownerDashboard)} className="text-slate-900 dark:text-slate-100 flex size-10 items-center justify-center cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full">
             <span className="material-symbols-outlined">arrow_back</span>
           </div>
           <h2 className="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center">Track My Tech</h2>
@@ -19,7 +24,7 @@ export const TrackMyTechSheet: React.FC = () => {
         <div className="absolute inset-0 z-0 bg-cover bg-center" style={{ backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuAE6hlaw41N8_s0FE6c7dfi0dGsSkIwzpw--3ZS9zk5F_O4kIg3OmYV2peYFb2hzMN7Mmj74tO0i6OIoNyJofaQR5SrbujTQ01NuE9Iq-hZNvBav72zTSfrAtQJv7cehh8e7qFFiFGH6wOrv681inKXB8RL6NElh5WMb-tL2H1DSEiORRbc4stZtt3e3CahrYwXmsAMyhJB6g5sgttHdir79jP3ftQUOdkf2_HMnqPZ9U0eO1vQMuBcanW77xZ5ZHAkSyjebb9rb1A")' }}>
           <div className="absolute top-4 right-4 flex flex-col gap-2">
             {['add', 'remove', 'my_location'].map((icon, i) => (
-              <button key={i} className={`flex size-10 items-center justify-center rounded-lg bg-white dark:bg-slate-800 shadow-lg ${icon === 'my_location' ? 'text-primary' : 'text-slate-700 dark:text-slate-200'}`}>
+              <button key={i} className={`flex size-10 items-center justify-center rounded-lg bg-white dark:bg-slate-800 shadow-lg ${icon === 'my_location' ? 'text-primary' : 'text-slate-700 dark:text-slate-200'} active:scale-95 transition-transform`}>
                 <span className="material-symbols-outlined">{icon}</span>
               </button>
             ))}
@@ -45,7 +50,7 @@ export const TrackMyTechSheet: React.FC = () => {
         </div>
         <div className="mt-auto relative z-20">
           <div className="flex flex-col items-stretch bg-white dark:bg-slate-900 rounded-t-[2rem] shadow-[0_-8px_30px_rgb(0,0,0,0.12)] border-t border-slate-100 dark:border-slate-800">
-            <button className="flex h-8 w-full items-center justify-center">
+            <button className="flex h-8 w-full items-center justify-center cursor-pointer" onClick={() => onNavigate(Screen.TrackMyTechProgress)}>
               <div className="h-1.5 w-12 rounded-full bg-slate-300 dark:bg-slate-700"></div>
             </button>
             <div className="px-6 pb-2">
@@ -65,11 +70,11 @@ export const TrackMyTechSheet: React.FC = () => {
                   </div>
                 </div>
                 <div className="flex w-full gap-3">
-                  <button className="flex items-center justify-center gap-2 rounded-xl h-12 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white text-sm font-bold flex-1 active:scale-95 transition-transform">
+                  <button onClick={() => onNavigate(Screen.ContactForm)} className="flex items-center justify-center gap-2 rounded-xl h-12 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white text-sm font-bold flex-1 active:scale-95 transition-transform hover:bg-slate-200 dark:hover:bg-slate-700">
                     <span className="material-symbols-outlined text-lg">chat_bubble</span>
                     <span>Message</span>
                   </button>
-                  <button className="flex items-center justify-center gap-2 rounded-xl h-12 bg-primary text-white text-sm font-bold flex-1 active:scale-95 transition-transform">
+                  <button className="flex items-center justify-center gap-2 rounded-xl h-12 bg-primary text-white text-sm font-bold flex-1 active:scale-95 transition-transform hover:bg-primary/90">
                     <span className="material-symbols-outlined text-lg">call</span>
                     <span>Call</span>
                   </button>
@@ -105,12 +110,12 @@ export const TrackMyTechSheet: React.FC = () => {
 };
 
 // === Track My Tech (Progress View) ===
-export const TrackMyTechProgress: React.FC = () => {
+export const TrackMyTechProgress: React.FC<Props> = ({ onNavigate }) => {
   return (
     <div className="bg-background-light dark:bg-background-dark text-white font-sans h-screen flex flex-col relative overflow-hidden border-x border-white/5">
       <div className="flex items-center bg-background-dark/80 backdrop-blur-md p-4 pb-2 justify-between sticky top-0 z-50">
-        <div className="text-white flex size-12 shrink-0 items-center justify-start">
-          <span className="material-symbols-outlined cursor-pointer">arrow_back_ios</span>
+        <div onClick={() => onNavigate(Screen.HomeownerDashboard)} className="text-white flex size-12 shrink-0 items-center justify-start cursor-pointer hover:opacity-80">
+          <span className="material-symbols-outlined">arrow_back_ios</span>
         </div>
         <h2 className="text-white text-lg font-bold leading-tight tracking-tight flex-1 text-center">Track My Tech</h2>
         <div className="flex w-12 items-center justify-end">
@@ -138,7 +143,7 @@ export const TrackMyTechProgress: React.FC = () => {
           </div>
         </div>
         <div className="relative -mt-6 bg-background-dark rounded-t-[2rem] border-t border-white/10 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
-          <div className="flex h-8 w-full items-center justify-center">
+          <div className="flex h-8 w-full items-center justify-center cursor-pointer" onClick={() => onNavigate(Screen.TrackMyTechSheet)}>
             <div className="h-1.5 w-12 rounded-full bg-white/20"></div>
           </div>
           <div className="px-6 pb-4">
@@ -187,9 +192,9 @@ export const TrackMyTechProgress: React.FC = () => {
               </div>
             </div>
             <div className="flex flex-col gap-3">
-              <button className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl transition-colors">View Full Profile</button>
+              <button onClick={() => onNavigate(Screen.LaborPool)} className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl transition-colors">View Full Profile</button>
               <div className="flex gap-3">
-                <button className="flex-1 bg-white/5 hover:bg-white/10 text-white font-semibold py-3 rounded-xl border border-white/10 flex items-center justify-center gap-2">
+                <button onClick={() => onNavigate(Screen.ContactForm)} className="flex-1 bg-white/5 hover:bg-white/10 text-white font-semibold py-3 rounded-xl border border-white/10 flex items-center justify-center gap-2">
                   <span className="material-symbols-outlined text-xl">chat_bubble</span> Message
                 </button>
                 <button className="flex-1 bg-white/5 hover:bg-white/10 text-white font-semibold py-3 rounded-xl border border-white/10 flex items-center justify-center gap-2">
@@ -211,11 +216,11 @@ export const TrackMyTechProgress: React.FC = () => {
 };
 
 // === Nearby Techs ===
-export const NearbyTechs: React.FC = () => {
+export const NearbyTechs: React.FC<Props> = ({ onNavigate }) => {
     return (
         <div className="bg-background-light dark:bg-background-dark font-sans text-slate-900 dark:text-white relative flex h-screen w-full flex-col overflow-hidden">
             <header className="z-20 flex items-center bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md p-4 justify-between border-b border-slate-200 dark:border-slate-800">
-                <div className="flex size-10 items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer">
+                <div onClick={() => onNavigate(Screen.HomeownerDashboard)} className="flex size-10 items-center justify-center rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer">
                     <span className="material-symbols-outlined text-2xl">arrow_back_ios_new</span>
                 </div>
                 <div className="flex-1 px-2">
@@ -282,7 +287,10 @@ export const NearbyTechs: React.FC = () => {
                                         <div className="flex items-center gap-1"><span className="material-symbols-outlined text-xs">distance</span><span>{c.dist}</span></div>
                                         <div className="flex items-center gap-1"><span className="material-symbols-outlined text-xs">star</span><span>{c.rev}</span></div>
                                     </div>
-                                    <button className="w-full h-11 bg-primary hover:bg-primary/90 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-md shadow-primary/20">
+                                    <button 
+                                        onClick={() => onNavigate(Screen.AIQuoteEstimator)}
+                                        className="w-full h-11 bg-primary hover:bg-primary/90 text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all shadow-md shadow-primary/20"
+                                    >
                                         <span className="material-symbols-outlined text-sm">event_available</span> Book for $50 Deposit
                                     </button>
                                 </div>
@@ -294,12 +302,22 @@ export const NearbyTechs: React.FC = () => {
             </main>
             <nav className="z-20 bg-white/95 dark:bg-background-dark/95 backdrop-blur-lg border-t border-slate-200 dark:border-slate-800 pb-8 pt-2">
                 <div className="flex justify-around items-center px-4">
-                    {['map', 'request_quote', 'calendar_today', 'person'].map((icon, i) => (
-                        <a key={i} className={`flex flex-col items-center gap-1 ${i===0 ? 'text-primary' : 'text-slate-400'}`} href="#">
-                            <span className={`material-symbols-outlined text-[28px] ${i===0 ? 'filled-icon': ''}`}>{icon}</span>
-                            <span className="text-[10px] font-bold uppercase tracking-wider">{['Map', 'Estimates', 'Bookings', 'Profile'][i]}</span>
-                        </a>
-                    ))}
+                    <button onClick={() => onNavigate(Screen.NearbyTechs)} className="flex flex-col items-center gap-1 text-primary">
+                        <span className="material-symbols-outlined text-[28px] filled-icon">map</span>
+                        <span className="text-[10px] font-bold uppercase tracking-wider">Map</span>
+                    </button>
+                    <button onClick={() => onNavigate(Screen.AIQuoteEstimator)} className="flex flex-col items-center gap-1 text-slate-400">
+                        <span className="material-symbols-outlined text-[28px]">request_quote</span>
+                        <span className="text-[10px] font-bold uppercase tracking-wider">Estimates</span>
+                    </button>
+                    <button onClick={() => onNavigate(Screen.ProjectMilestones)} className="flex flex-col items-center gap-1 text-slate-400">
+                        <span className="material-symbols-outlined text-[28px]">calendar_today</span>
+                        <span className="text-[10px] font-bold uppercase tracking-wider">Bookings</span>
+                    </button>
+                    <button onClick={() => onNavigate(Screen.HomeownerDashboard)} className="flex flex-col items-center gap-1 text-slate-400">
+                        <span className="material-symbols-outlined text-[28px]">person</span>
+                        <span className="text-[10px] font-bold uppercase tracking-wider">Profile</span>
+                    </button>
                 </div>
             </nav>
         </div>

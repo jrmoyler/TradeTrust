@@ -1,14 +1,19 @@
 import React from 'react';
+import { Screen } from '../App';
+
+interface Props {
+  onNavigate: (screen: Screen) => void;
+}
 
 // === Homeowner Dashboard ===
-export const HomeownerDashboard: React.FC = () => {
+export const HomeownerDashboard: React.FC<Props> = ({ onNavigate }) => {
   return (
     <div className="bg-background-light dark:bg-background-dark min-h-screen font-sans pb-24 relative">
       <header className="sticky top-0 z-40 bg-white dark:bg-[#1a2632] border-b border-slate-200 dark:border-slate-800">
         <div className="flex items-center justify-between p-4">
           <div className="flex items-center gap-3">
-            <div className="size-10 overflow-hidden rounded-full border-2 border-primary/20 bg-slate-200">
-              <img alt="User Profile" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDY3cvP7C6GI9jDRnujmJenMIFkk1oWn4o6hdKegn0yPYvdfhjSRVpTqRi7kZsDLlXDycsb83GJULB61sTmiMoKv6dmVqSpn-El0gWfL_3Em7cJ_IFiqQqzliwyHytnqitis-iZUxo_EG_LTqSlBYeb0bLDLOLme3v-djfr-0Q35NIaLuuxQJvfsG1ztvRCelLH3RgXXSFvAiD0hVoTF4uCkkAFZNbWlkd-PAaHyL8OGg7sg0fMigtYOTtx5nhi5EPPk0b-XBclPk" />
+            <div className="size-10 overflow-hidden rounded-full border-2 border-primary/20 bg-slate-200 cursor-pointer" onClick={() => onNavigate(Screen.ContactForm)}>
+              <img alt="User Profile" loading="lazy" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDY3cvP7C6GI9jDRnujmJenMIFkk1oWn4o6hdKegn0yPYvdfhjSRVpTqRi7kZsDLlXDycsb83GJULB61sTmiMoKv6dmVqSpn-El0gWfL_3Em7cJ_IFiqQqzliwyHytnqitis-iZUxo_EG_LTqSlBYeb0bLDLOLme3v-djfr-0Q35NIaLuuxQJvfsG1ztvRCelLH3RgXXSFvAiD0hVoTF4uCkkAFZNbWlkd-PAaHyL8OGg7sg0fMigtYOTtx5nhi5EPPk0b-XBclPk" />
             </div>
             <div>
               <h1 className="text-[#0d141c] dark:text-white text-sm font-bold leading-tight">TradeTrust Columbus</h1>
@@ -19,7 +24,7 @@ export const HomeownerDashboard: React.FC = () => {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <button className="flex size-10 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+            <button className="flex size-10 items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors">
               <span className="material-symbols-outlined">notifications</span>
             </button>
           </div>
@@ -27,9 +32,9 @@ export const HomeownerDashboard: React.FC = () => {
       </header>
       <main>
         <section className="p-4">
-          <div className="flex flex-col overflow-hidden rounded-xl shadow-sm bg-white dark:bg-[#1a2632] border border-slate-200 dark:border-slate-800">
+          <div onClick={() => onNavigate(Screen.TrackMyTechProgress)} className="flex flex-col overflow-hidden rounded-xl shadow-sm bg-white dark:bg-[#1a2632] border border-slate-200 dark:border-slate-800 cursor-pointer group hover:border-primary/50 transition-colors">
             <div className="relative w-full h-48 bg-slate-200">
-              <img alt="Live Map Tracking" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxkGhuBPvfCehFdXgxlTiTZNarTRAQGuqYDmUlPjoZLDPhlLFqSfIhDhspqdVzPv1mI0UpEGy-5BTFcqc1riGnSi49pz0hh0oNimq9CGjDH_GLjo5nMfchBrDcuArbyO9O1x4bH5atHy4Hkr5ELcewI0vYUGReA9kqhaNcXUnow8_VbFAMcCviFTdbuCn4pKhpOgFW8wrgr5YpvFiUwRk9aB9LRi_piGpoIsObcXuPOrl1raihnpzE5qRBZXTQoa788E2j2G6GLew" />
+              <img alt="Live Map Tracking" loading="lazy" className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxkGhuBPvfCehFdXgxlTiTZNarTRAQGuqYDmUlPjoZLDPhlLFqSfIhDhspqdVzPv1mI0UpEGy-5BTFcqc1riGnSi49pz0hh0oNimq9CGjDH_GLjo5nMfchBrDcuArbyO9O1x4bH5atHy4Hkr5ELcewI0vYUGReA9kqhaNcXUnow8_VbFAMcCviFTdbuCn4pKhpOgFW8wrgr5YpvFiUwRk9aB9LRi_piGpoIsObcXuPOrl1raihnpzE5qRBZXTQoa788E2j2G6GLew" />
               <div className="absolute bottom-3 left-3 bg-white dark:bg-[#1a2632] px-3 py-1.5 rounded-lg shadow-lg flex items-center gap-2">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -50,11 +55,17 @@ export const HomeownerDashboard: React.FC = () => {
                 </div>
               </div>
               <div className="flex gap-3 mt-4 pt-4 border-t border-slate-100 dark:border-slate-800">
-                <button className="flex-1 bg-primary text-white h-10 rounded-lg text-sm font-bold flex items-center justify-center gap-2">
+                <button 
+                  onClick={(e) => { e.stopPropagation(); onNavigate(Screen.TrackMyTechSheet); }}
+                  className="flex-1 bg-primary hover:bg-primary/90 text-white h-10 rounded-lg text-sm font-bold flex items-center justify-center gap-2 transition-colors"
+                >
                   <span className="material-symbols-outlined text-lg">map</span>
                   View Live Map
                 </button>
-                <button className="size-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg flex items-center justify-center">
+                <button 
+                  onClick={(e) => { e.stopPropagation(); onNavigate(Screen.ContactForm); }}
+                  className="size-10 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 rounded-lg flex items-center justify-center hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                >
                   <span className="material-symbols-outlined text-lg">chat</span>
                 </button>
               </div>
@@ -64,7 +75,7 @@ export const HomeownerDashboard: React.FC = () => {
         <section>
           <div className="flex items-center justify-between px-4 pt-4 pb-2">
             <h2 className="text-[#0d141c] dark:text-white text-xl font-bold tracking-tight">Request Service</h2>
-            <button className="text-primary text-sm font-semibold">View All</button>
+            <button onClick={() => onNavigate(Screen.LaborPool)} className="text-primary text-sm font-semibold hover:underline">View All</button>
           </div>
           <div className="grid grid-cols-2 gap-3 p-4">
             {[
@@ -73,7 +84,11 @@ export const HomeownerDashboard: React.FC = () => {
               { icon: "air", name: "HVAC", color: "green", textClass: "text-green-600" },
               { icon: "home_repair_service", name: "Roofing", color: "orange", textClass: "text-orange-600" }
             ].map((item, idx) => (
-              <div key={idx} className="flex flex-col gap-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#1a2632] p-4 transition-all hover:border-primary/50">
+              <div 
+                key={idx} 
+                onClick={() => onNavigate(Screen.AIQuoteEstimator)}
+                className="flex flex-col gap-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#1a2632] p-4 transition-all hover:border-primary/50 cursor-pointer active:scale-95"
+              >
                 <div className={`size-10 rounded-lg bg-${item.color}-50 dark:bg-${item.color}-900/30 flex items-center justify-center ${item.textClass}`}>
                   <span className="material-symbols-outlined">{item.icon}</span>
                 </div>
@@ -88,7 +103,7 @@ export const HomeownerDashboard: React.FC = () => {
             <span className="bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-400 text-xs px-2 py-0.5 rounded-full font-bold">2 Active</span>
           </div>
           <div className="flex flex-col gap-3 p-4">
-            <div className="flex items-center gap-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#1a2632] p-4 shadow-sm">
+            <div onClick={() => onNavigate(Screen.ProjectMilestones)} className="flex items-center gap-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#1a2632] p-4 shadow-sm cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
               <div className="size-12 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500">
                 <span className="material-symbols-outlined">deck</span>
               </div>
@@ -101,7 +116,7 @@ export const HomeownerDashboard: React.FC = () => {
               </div>
               <span className="material-symbols-outlined text-slate-400">chevron_right</span>
             </div>
-            <div className="flex items-center gap-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#1a2632] p-4 shadow-sm">
+            <div onClick={() => onNavigate(Screen.ProjectMilestones)} className="flex items-center gap-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-[#1a2632] p-4 shadow-sm cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
               <div className="size-12 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500">
                 <span className="material-symbols-outlined">palette</span>
               </div>
@@ -118,24 +133,27 @@ export const HomeownerDashboard: React.FC = () => {
         </section>
       </main>
       <nav className="fixed bottom-0 left-0 right-0 bg-white/95 dark:bg-[#1a2632]/95 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 px-6 pb-6 pt-3 flex justify-between items-center z-[100] max-w-md mx-auto">
-        <div className="flex flex-col items-center gap-1 text-primary">
+        <div onClick={() => onNavigate(Screen.HomeownerDashboard)} className="flex flex-col items-center gap-1 text-primary cursor-pointer hover:opacity-80">
           <span className="material-symbols-outlined filled-icon">home</span>
           <span className="text-[10px] font-bold">Home</span>
         </div>
-        <div className="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500">
+        <div onClick={() => onNavigate(Screen.ContactForm)} className="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 cursor-pointer hover:text-slate-600 dark:hover:text-slate-300">
           <span className="material-symbols-outlined">forum</span>
           <span className="text-[10px] font-medium">Messages</span>
         </div>
         <div className="relative -top-4">
-          <button className="bg-primary size-14 rounded-full shadow-lg shadow-primary/30 flex items-center justify-center text-white border-4 border-white dark:border-[#101922]">
+          <button 
+            onClick={() => onNavigate(Screen.AIQuoteEstimator)}
+            className="bg-primary hover:bg-blue-600 transition-colors size-14 rounded-full shadow-lg shadow-primary/30 flex items-center justify-center text-white border-4 border-white dark:border-[#101922] transform active:scale-95"
+          >
             <span className="material-symbols-outlined text-3xl">add</span>
           </button>
         </div>
-        <div className="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500">
+        <div onClick={() => onNavigate(Screen.ProjectMilestones)} className="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 cursor-pointer hover:text-slate-600 dark:hover:text-slate-300">
           <span className="material-symbols-outlined">assignment</span>
           <span className="text-[10px] font-medium">Projects</span>
         </div>
-        <div className="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500">
+        <div onClick={() => onNavigate(Screen.HomeownerDashboard)} className="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500 cursor-pointer hover:text-slate-600 dark:hover:text-slate-300">
           <span className="material-symbols-outlined">person</span>
           <span className="text-[10px] font-medium">Profile</span>
         </div>
@@ -145,16 +163,16 @@ export const HomeownerDashboard: React.FC = () => {
 };
 
 // === Labor Pool ===
-export const LaborPool: React.FC = () => {
+export const LaborPool: React.FC<Props> = ({ onNavigate }) => {
   return (
     <div className="bg-background-light dark:bg-background-dark min-h-screen font-sans pb-24 relative">
       <div className="sticky top-0 z-50 flex items-center bg-white dark:bg-slate-900 px-4 py-3 border-b border-slate-200 dark:border-slate-800 justify-between">
-        <div className="text-slate-900 dark:text-white flex size-10 shrink-0 items-center justify-start">
+        <div onClick={() => onNavigate(Screen.HomeownerDashboard)} className="text-slate-900 dark:text-white flex size-10 shrink-0 items-center justify-start cursor-pointer hover:opacity-70">
           <span className="material-symbols-outlined">arrow_back_ios</span>
         </div>
         <h2 className="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight flex-1 text-center">Labor Pool</h2>
         <div className="flex items-center justify-end">
-          <button className="bg-primary hover:bg-primary/90 text-white text-xs font-bold py-2 px-4 rounded-full transition-colors whitespace-nowrap">
+          <button onClick={() => onNavigate(Screen.AIQuoteEstimator)} className="bg-primary hover:bg-primary/90 text-white text-xs font-bold py-2 px-4 rounded-full transition-colors whitespace-nowrap">
             Post a Seat
           </button>
         </div>
@@ -170,12 +188,12 @@ export const LaborPool: React.FC = () => {
         </label>
       </div>
       <div className="flex gap-2 px-4 py-2 overflow-x-auto no-scrollbar bg-white dark:bg-slate-900">
-        <button className="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary text-white px-4">
+        <button className="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary text-white px-4 hover:bg-primary/90">
           <span className="text-sm font-medium">All</span>
           <span className="material-symbols-outlined text-sm">keyboard_arrow_down</span>
         </button>
         {["Journeymen", "Apprentices", "OH Licensed"].map((filter, i) => (
-          <button key={i} className="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-4">
+          <button key={i} className="flex h-9 shrink-0 items-center justify-center gap-x-2 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-4 hover:bg-slate-200 dark:hover:bg-slate-700">
             <span className="text-sm font-medium">{filter}</span>
             <span className="material-symbols-outlined text-sm text-slate-400">keyboard_arrow_down</span>
           </button>
@@ -205,8 +223,13 @@ export const LaborPool: React.FC = () => {
                 <p className="text-slate-500 dark:text-slate-400 text-sm font-normal">{worker.role}</p>
               </div>
               <div className="flex gap-2">
-                <button className="flex-1 flex items-center justify-center rounded-lg h-9 bg-primary text-white text-sm font-bold">Hire {worker.name.split(' ')[0]}</button>
-                <button className="w-10 flex items-center justify-center rounded-lg h-9 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300">
+                <button 
+                  onClick={() => onNavigate(Screen.AIQuoteEstimator)}
+                  className="flex-1 flex items-center justify-center rounded-lg h-9 bg-primary hover:bg-primary/90 transition-colors text-white text-sm font-bold active:scale-95"
+                >
+                  Hire {worker.name.split(' ')[0]}
+                </button>
+                <button onClick={() => onNavigate(Screen.ContactForm)} className="w-10 flex items-center justify-center rounded-lg h-9 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700">
                   <span className="material-symbols-outlined text-xl">info</span>
                 </button>
               </div>
@@ -216,22 +239,22 @@ export const LaborPool: React.FC = () => {
         ))}
       </div>
       <div className="fixed bottom-0 left-0 right-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-t border-slate-200 dark:border-slate-800 px-6 py-2 flex justify-between items-center pb-8 max-w-md mx-auto">
-        <div className="flex flex-col items-center gap-1 text-primary">
+        <button onClick={() => onNavigate(Screen.LaborPool)} className="flex flex-col items-center gap-1 text-primary">
           <span className="material-symbols-outlined filled-icon">groups</span>
           <span className="text-[10px] font-medium">Labor Pool</span>
-        </div>
-        <div className="flex flex-col items-center gap-1 text-slate-400">
+        </button>
+        <button onClick={() => onNavigate(Screen.ProjectMilestones)} className="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600">
           <span className="material-symbols-outlined">work</span>
           <span className="text-[10px] font-medium">My Jobs</span>
-        </div>
-        <div className="flex flex-col items-center gap-1 text-slate-400">
+        </button>
+        <button onClick={() => onNavigate(Screen.ContactForm)} className="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600">
           <span className="material-symbols-outlined">chat_bubble</span>
           <span className="text-[10px] font-medium">Messages</span>
-        </div>
-        <div className="flex flex-col items-center gap-1 text-slate-400">
+        </button>
+        <button onClick={() => onNavigate(Screen.HomeownerDashboard)} className="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-600">
           <span className="material-symbols-outlined">account_circle</span>
           <span className="text-[10px] font-medium">Account</span>
-        </div>
+        </button>
       </div>
     </div>
   );

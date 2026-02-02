@@ -1,13 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Screen } from '../App';
+
+interface Props {
+  onNavigate: (screen: Screen) => void;
+}
 
 // === Project Milestones ===
-export const ProjectMilestones: React.FC = () => {
+export const ProjectMilestones: React.FC<Props> = ({ onNavigate }) => {
+    const [showGallery, setShowGallery] = useState(false);
+    
+    // Simple Carousel Component
+    const GalleryModal = () => (
+        <div className="fixed inset-0 z-[100] bg-black/90 flex flex-col items-center justify-center p-4">
+            <button onClick={() => setShowGallery(false)} className="absolute top-6 right-6 text-white p-2 bg-white/10 rounded-full hover:bg-white/20 transition-colors">
+                <span className="material-symbols-outlined text-2xl">close</span>
+            </button>
+            <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 w-full h-[60vh] max-w-lg items-center no-scrollbar">
+                {[
+                    "https://lh3.googleusercontent.com/aida-public/AB6AXuAvcXYmhwaiL9BeEr4U8dqa9owe3fDfLM7VDiqk0U_MwD3d7cDX23HzkUbDioYTxbDwtKuSXWOEvThBFkBMSouMX-Af3oxqRqaKZH74jMO_Sx7kaV4kq6jXuBgne1uu5yiOgEnrrkGUkuxC4W4J0iRrgVKqG51m8F5DQ3hMBDVpT0HesrrodLZLh-1CwZwjVq5Ve7DoX4TYCaD057UQL6KOq7BeA0qD-XYHvNPSQXR5nNs7WWcPpiVBNoAWLb6BezRhVkmkzjBzVMY",
+                    "https://lh3.googleusercontent.com/aida-public/AB6AXuArqsdUcwpqsmdw8vuXE0Xr27Vzb9OTBz5qAtT7VTmF3f-iA8eRT6lt5Fnlj45IX-Wd0oWthr2mFLo8eIoA30_nNjziUPVMrQmULIEIZKbQNojOoQ05aVBHghmPebesYjmYdi71nxXV8le-lTmJ9M1qhLBTYWpNVUzq2M6-izAQOeR2MunG3ikbrCGhSFx8_ELhs80fxGCgFylUGGqMkDrOTgTwmtkpo35X8makOn9xL5KiIECdoOvVuWfC1VPRXbZKT2nEFivUxnQ",
+                    "https://lh3.googleusercontent.com/aida-public/AB6AXuC23CeAEsTrjC2cxi0nG-oR5iOQF7R_yixf0z0jv8Yh1ZUIEy7SgcSNghiitqbEogEJAzVIFpFgPpy-6dM4gudiuCL6Bloqknmz1xSEnskcGu98v5f2XvqLRqdLG_s-Zanwc2wcRbDGVeGrETWARsf4s7TOxgJdNtG9HNsNoKHzcbZJ2qr1UhXfQdy6OGGsdzqADXt5It67AmFPEYk1EixA-bNBuTlOCLCY9hzydphK0ec4r95rk43k0lL6uyVsb6BkUL4PfFJ1mQ8"
+                ].map((src, idx) => (
+                    <div key={idx} className="snap-center shrink-0 w-full h-full flex items-center justify-center">
+                        <img src={src} className="max-h-full max-w-full rounded-lg object-contain shadow-2xl" loading="lazy" />
+                    </div>
+                ))}
+            </div>
+            <p className="text-white mt-4 text-sm font-medium">Swipe to view more • 1 of 3</p>
+        </div>
+    );
+
     return (
         <div className="bg-background-light dark:bg-background-dark font-sans text-slate-900 dark:text-white min-h-screen flex flex-col">
+            {showGallery && <GalleryModal />}
             <header className="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
                 <div className="flex items-center p-4 justify-between max-w-md mx-auto">
                     <div className="flex items-center gap-3">
-                        <span className="material-symbols-outlined cursor-pointer">arrow_back_ios</span>
+                        <span onClick={() => onNavigate(Screen.HomeownerDashboard)} className="material-symbols-outlined cursor-pointer hover:opacity-70">arrow_back_ios</span>
                         <h2 className="text-lg font-bold leading-tight tracking-[-0.015em]">Kitchen Leak Fix</h2>
                     </div>
                     <button className="p-2 hover:bg-slate-200 dark:hover:bg-slate-800 rounded-full transition-colors"><span className="material-symbols-outlined">info</span></button>
@@ -61,7 +90,12 @@ export const ProjectMilestones: React.FC = () => {
                                 </div>
                                 <div className="flex flex-wrap gap-2 mt-3">
                                     <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-bold"><span className="material-symbols-outlined text-[14px]">payments</span> Fund Released</span>
-                                    <button className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold hover:bg-primary/20"><span className="material-symbols-outlined text-[14px]">image</span> View Proof of Work</button>
+                                    <button 
+                                        onClick={() => setShowGallery(true)}
+                                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold hover:bg-primary/20 transition-colors"
+                                    >
+                                        <span className="material-symbols-outlined text-[14px]">image</span> View Proof of Work
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +122,7 @@ export const ProjectMilestones: React.FC = () => {
                             </div>
                         </div>
                         {/* Milestone 3 */}
-                        <div className="grid grid-cols-[40px_1fr] gap-x-4">
+                        <div onClick={() => onNavigate(Screen.FinalSignOff)} className="grid grid-cols-[40px_1fr] gap-x-4 cursor-pointer hover:opacity-80">
                              <div className="flex flex-col items-center">
                                 <div className="z-10 bg-slate-200 dark:bg-slate-800 text-slate-500 dark:text-slate-400 rounded-full p-1 flex items-center justify-center"><span className="material-symbols-outlined text-[20px]">lock</span></div>
                             </div>
@@ -109,7 +143,10 @@ export const ProjectMilestones: React.FC = () => {
                         <span className="text-[10px] uppercase font-bold text-slate-400 dark:text-slate-500 tracking-wider">Project Total</span>
                         <span className="text-xl font-bold">$450.00</span>
                     </div>
-                    <button className="flex-1 bg-primary hover:bg-primary/90 text-white h-14 rounded-xl font-bold flex items-center justify-center gap-2 transition-all active:scale-95 shadow-lg shadow-primary/20">
+                    <button 
+                        onClick={() => onNavigate(Screen.ContactForm)}
+                        className="flex-1 bg-primary hover:bg-primary/90 text-white h-14 rounded-xl font-bold flex items-center justify-center gap-2 transition-all active:scale-95 shadow-lg shadow-primary/20"
+                    >
                         <span className="material-symbols-outlined filled-icon">chat</span> Chat with Pro
                     </button>
                 </div>
@@ -119,12 +156,12 @@ export const ProjectMilestones: React.FC = () => {
 }
 
 // === Escrow Deposit ===
-export const EscrowDeposit: React.FC = () => {
+export const EscrowDeposit: React.FC<Props> = ({ onNavigate }) => {
     return (
         <div className="bg-background-light dark:bg-background-dark font-sans text-gray-900 dark:text-white min-h-screen">
             <div className="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden max-w-md mx-auto border-x border-gray-200 dark:border-gray-800">
                 <div className="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10 border-b border-gray-200 dark:border-gray-800">
-                    <div className="text-gray-900 dark:text-white flex size-12 shrink-0 items-center cursor-pointer"><span className="material-symbols-outlined">arrow_back_ios</span></div>
+                    <div onClick={() => onNavigate(Screen.ContractorMatches)} className="text-gray-900 dark:text-white flex size-12 shrink-0 items-center cursor-pointer hover:opacity-70"><span className="material-symbols-outlined">arrow_back_ios</span></div>
                     <h2 className="text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-12">Secure Escrow Deposit</h2>
                 </div>
                 <div className="flex flex-col p-4">
@@ -159,7 +196,7 @@ export const EscrowDeposit: React.FC = () => {
                     </div>
                     <h3 className="text-lg font-bold leading-tight tracking-[-0.015em] pb-4">Express Checkout</h3>
                     <div className="flex flex-col gap-3 mb-8">
-                        <button className="flex w-full items-center justify-center bg-black text-white rounded-lg h-12 font-medium">
+                        <button className="flex w-full items-center justify-center bg-black text-white rounded-lg h-12 font-medium hover:bg-gray-900 transition-colors">
                             <span className="mr-1">Pay with</span>
                             {/* Apple Pay-like Logo SVG */}
                             <svg className="h-6 w-auto" fill="currentColor" viewBox="0 0 45 18">
@@ -167,7 +204,7 @@ export const EscrowDeposit: React.FC = () => {
                                 <path d="M19.72 13.06c1.37 0 2.45-.48 3.14-1.24v1.07h.93V8.27h-.93v1.08c-.68-.79-1.78-1.25-3.14-1.25-2.28 0-4.14 1.83-4.14 4.48s1.86 4.48 4.14 4.48zm.27-7.98c1.86 0 3.21 1.48 3.21 3.5s-1.35 3.5-3.21 3.5c-1.85 0-3.21-1.48-3.21-3.5s1.36-3.5 3.21-3.5zM31.25 8.1c-1.37 0-2.43.51-3.11 1.3V8.27h-.93v8.52h.93v-3.32c.68.79 1.74 1.25 3.11 1.25 2.28 0 4.14-1.83 4.14-4.48S33.53 8.1 31.25 8.1zm-.27 7.98c-1.85 0-3.21-1.48-3.21-3.5s1.36-3.5 3.21-3.5 3.21 1.48 3.21 3.5-1.36 3.5-3.21 3.5zM6.29 8.27l-2.73 6.94H2.47L3.92 11H.89l-.65 1.63H.24v.2h1.12l1.24-3.11L1.44 13.5H.24v.2h2.2l3.85-8.52h-1.2l-1.42 3.66h.02l1.4-3.57zM11.64 12.87c.81 0 1.51-.31 1.94-.85v.77h.93V8.27h-.93v.85c-.43-.58-1.13-.85-1.94-.85-1.63 0-2.88 1.26-2.88 2.8s1.25 2.8 2.88 2.8zm.13-4.84c1.16 0 2.01.89 2.01 2.04s-.85 2.04-2.01 2.04-2.01-.89-2.01-2.04.85-2.04 2.01-2.04zM24.79 8.27h.93v4.66c0 1.25.75 1.83 1.76 1.83.95 0 1.63-.58 1.63-1.83V8.27h.93v4.7c0 1.79-1.1 2.68-2.56 2.68s-2.69-.89-2.69-2.68V8.27z"></path>
                             </svg>
                         </button>
-                        <button class="flex w-full items-center justify-center bg-white text-gray-900 border border-gray-300 rounded-lg h-12 font-medium">
+                        <button class="flex w-full items-center justify-center bg-white text-gray-900 border border-gray-300 rounded-lg h-12 font-medium hover:bg-gray-50 transition-colors">
                            <img alt="Google Pay" className="h-5" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqNKoqcAUNcz-d7p1T3uZDxjHxEj9UMLB7qbMyt30Q1BS8w1p690p-m0N4jPksNbDrhrcIelxFZT24rheqvamTA5GMPlblX3JKmAZ55XV78oMCGRKFaknpQf3y_Kmq3GqScUTenElMiela8MIFuzGWrsKGqjB9jPCRS1f38YBB69DHtKVOavX3kqFG-OMdKESSmZJdILY9Skk4Kez-6kLyOqk5TVOKJe8ENd6bpVRJmoaqyIpWRIFVb1TSLjbZyKxs1-6PcgRwONg" />
                         </button>
                     </div>
@@ -196,7 +233,10 @@ export const EscrowDeposit: React.FC = () => {
                             <input className="w-full bg-white dark:bg-[#1a2632] border border-gray-200 dark:border-gray-800 rounded-lg h-12 px-4 text-sm focus:border-primary focus:ring-1 focus:ring-primary outline-none text-gray-900 dark:text-white" placeholder="ZIP Code" type="text" />
                         </div>
                     </div>
-                    <button className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl mt-8 shadow-lg shadow-primary/20 transition-colors flex items-center justify-center gap-2">
+                    <button 
+                        onClick={() => onNavigate(Screen.ProjectMilestones)}
+                        className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl mt-8 shadow-lg shadow-primary/20 transition-colors flex items-center justify-center gap-2 active:scale-[0.98]"
+                    >
                         <span className="material-symbols-outlined">lock</span> Confirm Escrow Deposit $50.00
                     </button>
                     <div className="mt-8 flex flex-col items-center gap-4 pb-12">
@@ -215,11 +255,11 @@ export const EscrowDeposit: React.FC = () => {
 }
 
 // === Final Sign Off ===
-export const FinalSignOff: React.FC = () => {
+export const FinalSignOff: React.FC<Props> = ({ onNavigate }) => {
     return (
         <div className="bg-background-light dark:bg-background-dark text-[#0d141c] dark:text-slate-100 min-h-screen font-sans">
             <div className="sticky top-0 z-50 flex items-center bg-white dark:bg-[#1a2632] border-b border-slate-200 dark:border-slate-800 p-4 justify-between">
-                <div className="flex size-10 shrink-0 items-center justify-start cursor-pointer"><span className="material-symbols-outlined text-[#0d141c] dark:text-white">arrow_back_ios</span></div>
+                <div onClick={() => onNavigate(Screen.ProjectMilestones)} className="flex size-10 shrink-0 items-center justify-start cursor-pointer hover:opacity-70"><span className="material-symbols-outlined text-[#0d141c] dark:text-white">arrow_back_ios</span></div>
                 <h2 className="text-[#0d141c] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-10">Final Sign-off</h2>
             </div>
             <div className="max-w-md mx-auto pb-12">
@@ -278,7 +318,7 @@ export const FinalSignOff: React.FC = () => {
                     </div>
                 </div>
                 <div className="px-4 mt-10 space-y-4">
-                    <button className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg transition-colors flex items-center justify-center gap-2"><span className="material-symbols-outlined">payments</span> Release Funds & Complete</button>
+                    <button onClick={() => onNavigate(Screen.HomeownerDashboard)} className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg transition-colors flex items-center justify-center gap-2 active:scale-[0.98]"><span className="material-symbols-outlined">payments</span> Release Funds & Complete</button>
                     <button className="w-full flex items-center justify-center gap-2 py-3 border border-slate-200 dark:border-slate-800 rounded-xl bg-white dark:bg-[#1a2632] text-slate-600 dark:text-slate-300 text-sm font-semibold"><span className="material-symbols-outlined text-primary">description</span> Download Final Project Log (PDF)</button>
                     <div className="flex items-center justify-center gap-2 opacity-60 pb-8"><span className="material-symbols-outlined text-xs">lock</span><p className="text-[10px] uppercase font-bold tracking-widest text-slate-500 dark:text-slate-400">Secured by TradeTrust Immutable Ledger</p></div>
                 </div>

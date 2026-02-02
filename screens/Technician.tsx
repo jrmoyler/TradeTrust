@@ -1,7 +1,12 @@
 import React from 'react';
+import { Screen } from '../App';
+
+interface Props {
+  onNavigate: (screen: Screen) => void;
+}
 
 // === Technician Dashboard ===
-export const TechnicianDashboard: React.FC = () => {
+export const TechnicianDashboard: React.FC<Props> = ({ onNavigate }) => {
   return (
     <div className="bg-background-light dark:bg-background-dark font-sans text-[#0d141c] dark:text-slate-100 flex flex-col h-screen overflow-hidden">
       <div className="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-10">
@@ -39,11 +44,14 @@ export const TechnicianDashboard: React.FC = () => {
                   <p className="text-[#49739c] dark:text-slate-400 text-sm font-normal">123 Maple St, North Hills</p>
                 </div>
                 <div className="flex gap-2">
-                  <button className="flex flex-1 items-center justify-center gap-2 rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold shadow-sm active:scale-95 transition-transform">
+                  <button 
+                    onClick={() => onNavigate(Screen.TechLiveTracker)}
+                    className="flex flex-1 items-center justify-center gap-2 rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold shadow-sm active:scale-95 transition-transform"
+                  >
                     <span className="material-symbols-outlined text-sm">navigation</span>
                     <span>Start Navigation</span>
                   </button>
-                  <button className="flex size-10 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 active:scale-95 transition-transform">
+                  <button onClick={() => onNavigate(Screen.ContactForm)} className="flex size-10 items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 active:scale-95 transition-transform">
                     <span className="material-symbols-outlined">call</span>
                   </button>
                 </div>
@@ -53,13 +61,19 @@ export const TechnicianDashboard: React.FC = () => {
         </div>
         <div className="px-4 py-2">
           <div className="grid grid-cols-2 gap-3">
-            <button className="flex flex-col items-center justify-center gap-2 p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm active:bg-slate-50 dark:active:bg-slate-800">
+            <button 
+              onClick={() => onNavigate(Screen.AIQuoteEstimator)}
+              className="flex flex-col items-center justify-center gap-2 p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm active:bg-slate-50 dark:active:bg-slate-800"
+            >
               <div className="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                 <span className="material-symbols-outlined">description</span>
               </div>
               <span className="text-sm font-bold dark:text-white">New Estimate</span>
             </button>
-            <button className="flex flex-col items-center justify-center gap-2 p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm active:bg-slate-50 dark:active:bg-slate-800">
+            <button 
+              onClick={() => onNavigate(Screen.PhotoUploadGuide)}
+              className="flex flex-col items-center justify-center gap-2 p-4 bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800 shadow-sm active:bg-slate-50 dark:active:bg-slate-800"
+            >
               <div className="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                 <span className="material-symbols-outlined">upload_file</span>
               </div>
@@ -106,15 +120,15 @@ export const TechnicianDashboard: React.FC = () => {
         </div>
       </div>
       <div className="fixed bottom-0 w-full max-w-md bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-t border-slate-200 dark:border-slate-800 px-6 py-3 pb-8 flex justify-between items-center z-20">
-        <button className="flex flex-col items-center gap-1 text-primary">
+        <button onClick={() => onNavigate(Screen.HomeownerDashboard)} className="flex flex-col items-center gap-1 text-primary">
           <span className="material-symbols-outlined filled-icon">home</span>
           <span className="text-[10px] font-bold">Home</span>
         </button>
-        <button className="flex flex-col items-center gap-1 text-slate-400">
+        <button onClick={() => onNavigate(Screen.TechnicianDashboard)} className="flex flex-col items-center gap-1 text-slate-400">
           <span className="material-symbols-outlined">assignment</span>
           <span className="text-[10px] font-medium">Jobs</span>
         </button>
-        <button className="flex flex-col items-center gap-1 text-slate-400">
+        <button onClick={() => onNavigate(Screen.TechPaymentsHub)} className="flex flex-col items-center gap-1 text-slate-400">
           <span className="material-symbols-outlined">payments</span>
           <span className="text-[10px] font-medium">Earnings</span>
         </button>
@@ -128,11 +142,11 @@ export const TechnicianDashboard: React.FC = () => {
 };
 
 // === Tech Live Tracker ===
-export const TechLiveTracker: React.FC = () => {
+export const TechLiveTracker: React.FC<Props> = ({ onNavigate }) => {
     return (
         <div className="bg-background-light dark:bg-background-dark text-white font-sans flex flex-col h-screen overflow-hidden">
             <div className="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between sticky top-0 z-50">
-                <div className="flex size-12 shrink-0 items-center">
+                <div onClick={() => onNavigate(Screen.TechnicianDashboard)} className="flex size-12 shrink-0 items-center cursor-pointer hover:opacity-80">
                     <div className="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-primary" style={{backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuCu2V-n2EYsoEuKR-DwBrk8xZXsJsiJHkx7DJfID6mjchdrhoaI8EN8qQ0i1ldQHIZFPuSQ1fCqiDzlAvzPz12bR2WBrDjykWD_pHvL634S1LF0mpgv-4JumEQu8jLmQOLJ9Dr0x2N9tCupm2BAFWK4J_m8KpSKrbkESDRcw_LoGoOXhLHu2B4ajxOepIse2hhaw_ncKjXSAKqb8VvTyblv4mERzZfyc5JlFm0Q8dV5btEHygN-j_01LqWz6dgZF9gk6rivxpIXuqo")'}}></div>
                 </div>
                 <div className="flex-1 px-3">
@@ -192,7 +206,7 @@ export const TechLiveTracker: React.FC = () => {
                                     <span className="material-symbols-outlined !text-[20px]">directions</span>
                                     <span className="truncate">Navigate</span>
                                 </button>
-                                <button className="flex size-11 cursor-pointer items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white font-bold transition-all active:scale-[0.98]">
+                                <button onClick={() => onNavigate(Screen.ContactForm)} className="flex size-11 cursor-pointer items-center justify-center rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-900 dark:text-white font-bold transition-all active:scale-[0.98]">
                                     <span className="material-symbols-outlined">call</span>
                                 </button>
                             </div>
@@ -218,12 +232,22 @@ export const TechLiveTracker: React.FC = () => {
             </div>
             <div className="fixed bottom-0 left-0 right-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-t border-slate-200 dark:border-slate-800 z-50 max-w-md mx-auto">
                 <div className="flex justify-around items-center h-16">
-                    {['home', 'calendar_today', 'payments', 'person'].map((icon, i) => (
-                        <button key={i} className={`flex flex-col items-center gap-1 ${i===0?'text-primary':'text-slate-400'}`}>
-                            <span className={`material-symbols-outlined ${i===0?'filled-icon':''}`}>{icon}</span>
-                            <span className="text-[10px] font-bold">{['Home', 'Schedule', 'Wallet', 'Profile'][i]}</span>
-                        </button>
-                    ))}
+                    <button onClick={() => onNavigate(Screen.TechnicianDashboard)} className="flex flex-col items-center gap-1 text-primary">
+                        <span className="material-symbols-outlined filled-icon">home</span>
+                        <span className="text-[10px] font-bold">Home</span>
+                    </button>
+                    <button onClick={() => onNavigate(Screen.TechnicianDashboard)} className="flex flex-col items-center gap-1 text-slate-400">
+                        <span className="material-symbols-outlined">calendar_today</span>
+                        <span className="text-[10px] font-bold">Schedule</span>
+                    </button>
+                    <button onClick={() => onNavigate(Screen.TechPaymentsHub)} className="flex flex-col items-center gap-1 text-slate-400">
+                        <span className="material-symbols-outlined">payments</span>
+                        <span className="text-[10px] font-bold">Wallet</span>
+                    </button>
+                    <button onClick={() => onNavigate(Screen.TechnicianDashboard)} className="flex flex-col items-center gap-1 text-slate-400">
+                        <span className="material-symbols-outlined">person</span>
+                        <span className="text-[10px] font-bold">Profile</span>
+                    </button>
                 </div>
             </div>
         </div>
@@ -231,7 +255,7 @@ export const TechLiveTracker: React.FC = () => {
 }
 
 // === Tech Payments Hub ===
-export const TechPaymentsHub: React.FC = () => {
+export const TechPaymentsHub: React.FC<Props> = ({ onNavigate }) => {
     return (
         <div className="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen font-sans pb-24">
             <nav className="sticky top-0 z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
@@ -267,8 +291,8 @@ export const TechPaymentsHub: React.FC = () => {
                     </div>
                 </div>
                 <div className="px-4 pb-4">
-                    <div className="flex flex-col items-stretch justify-start rounded-xl md:flex-row shadow-lg bg-white dark:bg-[#182634] border border-slate-200 dark:border-slate-800 overflow-hidden">
-                        <div className="w-full bg-center bg-no-repeat aspect-[16/9] bg-cover relative group cursor-pointer" style={{backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuC5I9LAfcBvHfSJYmRICRvupYk_hgxSSDLNDWwr0uZVe1UmRhe1T03JpkDqGtn-HHaxOFuF7I11P98Tbrx6uqC1rDMjfeJIS2tIu4tGsx048Ivp-mE5rkc2ua57hDLw5CLzM-UNmWkAxb1ZIfB7WmR2vtYCB0KCUCK0roUPPxzffYb32Zkvxhk1-bG5vKVhWfyqQXvdqdbJWoYQ_SmBk5PDGfCplNabaq90rOVQrWJj6EeFLauAqbyM1gSysJuXiTwzt80yNRB9_VY")'}}>
+                    <div onClick={() => onNavigate(Screen.AIQuoteEstimator)} className="flex flex-col items-stretch justify-start rounded-xl md:flex-row shadow-lg bg-white dark:bg-[#182634] border border-slate-200 dark:border-slate-800 overflow-hidden cursor-pointer hover:border-primary/50 transition-colors">
+                        <div className="w-full bg-center bg-no-repeat aspect-[16/9] bg-cover relative group" style={{backgroundImage: 'url("https://lh3.googleusercontent.com/aida-public/AB6AXuC5I9LAfcBvHfSJYmRICRvupYk_hgxSSDLNDWwr0uZVe1UmRhe1T03JpkDqGtn-HHaxOFuF7I11P98Tbrx6uqC1rDMjfeJIS2tIu4tGsx048Ivp-mE5rkc2ua57hDLw5CLzM-UNmWkAxb1ZIfB7WmR2vtYCB0KCUCK0roUPPxzffYb32Zkvxhk1-bG5vKVhWfyqQXvdqdbJWoYQ_SmBk5PDGfCplNabaq90rOVQrWJj6EeFLauAqbyM1gSysJuXiTwzt80yNRB9_VY")'}}>
                             <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                                 <div className="size-16 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30">
                                     <span className="material-symbols-outlined text-white text-[32px]">photo_camera</span>
@@ -345,24 +369,24 @@ export const TechPaymentsHub: React.FC = () => {
             </main>
             <div className="fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-[#101922]/90 backdrop-blur-xl border-t border-slate-200 dark:border-slate-800 px-6 py-3 z-50">
                 <div className="max-w-md mx-auto flex justify-between items-center">
-                    <button className="flex flex-col items-center gap-1 text-primary">
+                    <button onClick={() => onNavigate(Screen.TechnicianDashboard)} className="flex flex-col items-center gap-1 text-primary">
                         <span className="material-symbols-outlined text-[24px]">home</span>
                         <span className="text-[10px] font-bold uppercase tracking-tighter">Home</span>
                     </button>
-                    <button className="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500">
+                    <button onClick={() => onNavigate(Screen.TechnicianDashboard)} className="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500">
                         <span className="material-symbols-outlined text-[24px]">handyman</span>
                         <span className="text-[10px] font-bold uppercase tracking-tighter">Jobs</span>
                     </button>
                     <div className="relative -mt-10">
-                        <button className="size-14 rounded-full bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/40 border-4 border-white dark:border-[#101922]">
+                        <button onClick={() => onNavigate(Screen.AIQuoteEstimator)} className="size-14 rounded-full bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/40 border-4 border-white dark:border-[#101922] transform active:scale-95 transition-transform">
                             <span className="material-symbols-outlined text-[28px]">add</span>
                         </button>
                     </div>
-                    <button className="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500">
+                    <button onClick={() => onNavigate(Screen.TechPaymentsHub)} className="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500">
                         <span className="material-symbols-outlined text-[24px]">payments</span>
                         <span className="text-[10px] font-bold uppercase tracking-tighter">Escrow</span>
                     </button>
-                    <button className="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500">
+                    <button onClick={() => onNavigate(Screen.TechnicianDashboard)} className="flex flex-col items-center gap-1 text-slate-400 dark:text-slate-500">
                         <span className="material-symbols-outlined text-[24px]">settings</span>
                         <span className="text-[10px] font-bold uppercase tracking-tighter">Profile</span>
                     </button>

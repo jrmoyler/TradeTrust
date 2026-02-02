@@ -1,11 +1,16 @@
 import React from 'react';
+import { Screen } from '../App';
+
+interface Props {
+  onNavigate: (screen: Screen) => void;
+}
 
 // === AI Quote Estimator (Intro) ===
-export const AIQuoteEstimator: React.FC = () => {
+export const AIQuoteEstimator: React.FC<Props> = ({ onNavigate }) => {
   return (
     <div className="bg-background-light dark:bg-background-dark min-h-screen font-sans text-[#0d141c] dark:text-slate-100 antialiased">
       <div className="sticky top-0 z-50 flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between border-b border-slate-200 dark:border-slate-800">
-        <div className="text-primary flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/10 cursor-pointer">
+        <div onClick={() => onNavigate(Screen.HomeownerDashboard)} className="text-primary flex size-10 shrink-0 items-center justify-center rounded-full bg-primary/10 cursor-pointer hover:bg-primary/20">
           <span className="material-symbols-outlined">arrow_back</span>
         </div>
         <h2 className="text-[#0d141c] dark:text-white text-lg font-bold leading-tight tracking-[-0.015em] flex-1 text-center pr-10">AI Quote Estimator</h2>
@@ -85,7 +90,10 @@ export const AIQuoteEstimator: React.FC = () => {
           </div>
         </div>
         <div className="mt-auto px-4 pb-10 space-y-3">
-          <button className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg transition-all active:scale-[0.98]">
+          <button 
+            onClick={() => onNavigate(Screen.PhotoUploadGuide)}
+            className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl shadow-lg transition-all active:scale-[0.98]"
+          >
             Request Pro Quotes
           </button>
           <p className="text-center text-[11px] text-slate-400 leading-relaxed px-6">
@@ -98,12 +106,12 @@ export const AIQuoteEstimator: React.FC = () => {
 };
 
 // === Photo Upload Guide ===
-export const PhotoUploadGuide: React.FC = () => {
+export const PhotoUploadGuide: React.FC<Props> = ({ onNavigate }) => {
     return (
         <div className="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col font-sans">
             <header className="sticky top-0 z-50 bg-background-light dark:bg-background-dark border-b border-slate-200 dark:border-white/10">
                 <div className="flex items-center p-4 justify-between max-w-md mx-auto w-full">
-                    <div className="flex size-10 shrink-0 items-center justify-center cursor-pointer">
+                    <div onClick={() => onNavigate(Screen.AIQuoteEstimator)} className="flex size-10 shrink-0 items-center justify-center cursor-pointer hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full">
                         <span className="material-symbols-outlined">arrow_back_ios</span>
                     </div>
                     <h2 className="text-lg font-bold leading-tight tracking-tight flex-1 text-center">AI Photo Upload Guide</h2>
@@ -180,7 +188,10 @@ export const PhotoUploadGuide: React.FC = () => {
                 </section>
             </main>
             <footer className="fixed bottom-0 left-0 right-0 p-4 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-t border-slate-200 dark:border-white/10 max-w-md mx-auto">
-                <button className="flex w-full items-center justify-center gap-2 rounded-xl h-14 bg-primary text-white text-base font-bold tracking-wide shadow-lg active:scale-[0.98] transition-all">
+                <button 
+                  onClick={() => onNavigate(Screen.AIPriceEstimate)}
+                  className="flex w-full items-center justify-center gap-2 rounded-xl h-14 bg-primary text-white text-base font-bold tracking-wide shadow-lg active:scale-[0.98] transition-all"
+                >
                     <span className="material-symbols-outlined text-[20px]">auto_awesome</span>
                     <span>Analyze with AI</span>
                 </button>
@@ -191,11 +202,11 @@ export const PhotoUploadGuide: React.FC = () => {
 }
 
 // === AI Price Estimate ===
-export const AIPriceEstimate: React.FC = () => {
+export const AIPriceEstimate: React.FC<Props> = ({ onNavigate }) => {
     return (
         <div className="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col font-sans">
             <nav className="sticky top-0 z-50 flex items-center bg-background-light dark:bg-background-dark p-4 border-b border-slate-200 dark:border-white/5 justify-between">
-                <div className="flex size-12 shrink-0 items-center justify-start cursor-pointer">
+                <div onClick={() => onNavigate(Screen.PhotoUploadGuide)} className="flex size-12 shrink-0 items-center justify-start cursor-pointer hover:opacity-70">
                     <span className="material-symbols-outlined text-2xl">arrow_back_ios</span>
                 </div>
                 <h2 className="text-lg font-bold leading-tight tracking-tight flex-1 text-center">AI Price Estimate</h2>
@@ -284,10 +295,16 @@ export const AIPriceEstimate: React.FC = () => {
             </main>
             <footer className="fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-background-dark/80 backdrop-blur-lg border-t border-slate-200 dark:border-white/10 p-4 pb-8 max-w-md mx-auto">
                 <div className="flex flex-col gap-3">
-                    <button className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-[0.98]">
+                    <button 
+                        onClick={() => onNavigate(Screen.ContractorMatches)}
+                        className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 shadow-lg shadow-primary/20 transition-all active:scale-[0.98]"
+                    >
                         <span className="material-symbols-outlined">calendar_today</span> Book Now
                     </button>
-                    <button className="w-full bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/15 text-slate-900 dark:text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 border border-slate-200 dark:border-white/10 transition-all active:scale-[0.98]">
+                    <button 
+                        onClick={() => onNavigate(Screen.ContractorMatches)}
+                        className="w-full bg-slate-100 dark:bg-white/10 hover:bg-slate-200 dark:hover:bg-white/15 text-slate-900 dark:text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 border border-slate-200 dark:border-white/10 transition-all active:scale-[0.98]"
+                    >
                         <span className="material-symbols-outlined">description</span> Get Professional Quote
                     </button>
                 </div>
@@ -297,12 +314,12 @@ export const AIPriceEstimate: React.FC = () => {
 }
 
 // === Contractor Matches ===
-export const ContractorMatches: React.FC = () => {
+export const ContractorMatches: React.FC<Props> = ({ onNavigate }) => {
     return (
         <div className="bg-background-light dark:bg-background-dark min-h-screen text-slate-900 dark:text-white font-sans">
              <header className="sticky top-0 z-50 bg-background-light dark:bg-background-dark border-b border-slate-200 dark:border-slate-800">
                 <div className="flex items-center p-4 justify-between max-w-md mx-auto">
-                    <div className="flex size-10 shrink-0 items-center justify-start"><span className="material-symbols-outlined cursor-pointer">arrow_back_ios</span></div>
+                    <div onClick={() => onNavigate(Screen.AIPriceEstimate)} className="flex size-10 shrink-0 items-center justify-start cursor-pointer hover:opacity-70"><span className="material-symbols-outlined cursor-pointer">arrow_back_ios</span></div>
                     <div className="flex flex-col items-center">
                         <h1 className="text-base font-bold leading-tight">Top Matches</h1>
                         <p className="text-xs text-slate-500 dark:text-slate-400">Columbus, OH • Water Heater</p>
@@ -365,8 +382,8 @@ export const ContractorMatches: React.FC = () => {
                                     </div>
                                 </div>
                                 <div className="flex gap-2 pt-1">
-                                    <button className="flex-1 flex items-center justify-center rounded-lg h-11 px-4 bg-primary text-white text-sm font-bold shadow-md shadow-primary/20 active:scale-[0.98] transition-transform">Book Now</button>
-                                    <button className="flex items-center justify-center rounded-lg h-11 w-11 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300"><span className="material-symbols-outlined">chat_bubble</span></button>
+                                    <button onClick={() => onNavigate(Screen.EscrowDeposit)} className="flex-1 flex items-center justify-center rounded-lg h-11 px-4 bg-primary text-white text-sm font-bold shadow-md shadow-primary/20 active:scale-[0.98] transition-transform">Book Now</button>
+                                    <button onClick={() => onNavigate(Screen.ContactForm)} className="flex items-center justify-center rounded-lg h-11 w-11 border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300"><span className="material-symbols-outlined">chat_bubble</span></button>
                                 </div>
                             </div>
                         </div>
@@ -376,7 +393,7 @@ export const ContractorMatches: React.FC = () => {
             <nav className="fixed bottom-0 left-0 right-0 z-50 bg-white dark:bg-[#101922] border-t border-slate-200 dark:border-slate-800 pb-6 max-w-md mx-auto">
                 <div className="flex justify-around p-2">
                     {['search', 'description', 'event_available', 'account_circle'].map((icon, i) => (
-                        <div key={i} className={`flex flex-col items-center p-2 ${i===0 ? 'text-primary' : 'text-slate-400'}`}>
+                        <div onClick={() => onNavigate([Screen.ContractorMatches, Screen.AIPriceEstimate, Screen.ProjectMilestones, Screen.HomeownerDashboard][i])} key={i} className={`flex flex-col items-center p-2 cursor-pointer ${i===0 ? 'text-primary' : 'text-slate-400'}`}>
                             <span className="material-symbols-outlined">{icon}</span>
                             <span className="text-[10px] mt-1 font-medium">{['Matches', 'Estimates', 'Bookings', 'Profile'][i]}</span>
                         </div>
